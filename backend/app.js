@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cors = require('cors');
 
-const { PORT = 4000, BD_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const { PORT, BD_URL } = process.env;
 const app = express();
 const helmet = require('helmet');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
