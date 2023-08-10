@@ -1,0 +1,16 @@
+.gallery__button-like {
+    margin-right: 20px;
+    width: 22px;
+    height: 21px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity 0.5s ease;
+    background-color: transparent;
+    border: none;
+    background-repeat: no-repeat;
+    background-image: url('../../../images/VectorHeath.svg');
+}
+
+.gallery__button-like:hover {
+    opacity: 0.6;
+}

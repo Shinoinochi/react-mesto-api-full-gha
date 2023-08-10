@@ -1,0 +1,8 @@
+.menu_active {
+    display: flex;
+}
+@media screen and (min-width:861px) {
+    .menu_active {
+        display: none;
+    }    
+}

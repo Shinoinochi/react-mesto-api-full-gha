@@ -1,0 +1,17 @@
+
+.popup__button-image {
+    top: -5vh;
+    right: -3vw;
+}
+@media screen and (max-width: 900px) {
+    .popup__button-image {
+        right: -4.6vw;
+    }
+}
+@media screen and (max-width: 600px) {
+    .popup__button-image {
+        top: -4.5vh;
+        right: 0vw;
+    }
+}
+

@@ -1,0 +1,9 @@
+.menu {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
+    margin: 41px 0 0 0;
+    padding-bottom: 38px;
+}

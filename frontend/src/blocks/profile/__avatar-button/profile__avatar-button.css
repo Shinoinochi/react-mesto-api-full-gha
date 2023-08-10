@@ -1,0 +1,19 @@
+.profile__avatar-button{
+    position: absolute;
+    background-color: #000;
+    background-image: url('../../../images/Vector.png');
+    background-repeat: no-repeat;
+    background-size: 25%;
+    background-position: center;
+    cursor: pointer;
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+    outline: none;
+    border: none;
+    padding: 0;
+    transition: opacity .4s ease-in-out;
+ }
+ .profile__avatar-button:hover {
+    opacity: 0.8;
+ }

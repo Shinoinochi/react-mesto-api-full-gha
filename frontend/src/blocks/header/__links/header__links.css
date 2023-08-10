@@ -1,0 +1,9 @@
+.header__links{
+    display:flex;
+    flex-direction: row;
+}
+@media screen and (max-width:860px) {
+    .header__links {
+        display: none;
+    }
+}

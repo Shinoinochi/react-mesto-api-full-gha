@@ -1,0 +1,6 @@
+.header__links_auth {
+    .header__links{
+        display:flex;
+        flex-direction: row;
+    }
+}

@@ -1,0 +1,23 @@
+.gallery__title {
+    margin: 0;
+    padding: 0;
+    margin-left: 21px;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+@media screen and (max-width: 845px) {
+    .gallery__title {
+        max-width: 220px;
+    }
+}
+
+@media screen and (max-width: 500px) { 
+    .gallery__title {
+        max-width: 210px;
+    }
+}

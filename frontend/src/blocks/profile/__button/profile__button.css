@@ -1,0 +1,9 @@
+.profile__button {
+     cursor: pointer;
+     border: none;
+     background-repeat: no-repeat;
+     transition: opacity 0.5s ease;
+}
+.profile__button:hover {
+    opacity: 0.6;
+}
