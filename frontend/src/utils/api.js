@@ -176,7 +176,7 @@ export default class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://localhost:4000',
+  baseUrl: 'http://api.shinoinochi.mesto.nomoreparties.co',
   headers: {
     "Content-Type": 'application/json'
   }
