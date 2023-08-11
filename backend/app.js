@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cors = require('cors');
 
-const { PORT, BD_URL } = process.env;
+const { PORT = 3000, BD_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 const app = express();
 const helmet = require('helmet');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -15,7 +15,7 @@ const NotFoundError = require('./errors/not-found-err');
 mongoose.connect(BD_URL, {
   useNewUrlParser: true,
 });
-app.use(cors({ origin: ['http://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'] }));
+app.use(cors({ origin: ['http://localhost:3001', 'http://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'] }));
 app.use(requestLogger);
 app.use(helmet());
 app.use(express.json());
