@@ -123,7 +123,8 @@ function App() {
     }
     //Удаление карточки
     function handleCardDelete(card) {
-        api.deleteCard(card._id)
+        const jwt = localStorage.getItem('token');
+        api.deleteCard(card._id, jwt)
         .then(() => {
             setCards((state) => state.filter((c) => c._id !== card._id));
         })
@@ -133,8 +134,9 @@ function App() {
     }
     //Обновление данных пользователя
     function handleUpdateUser(userData) {
+        const jwt = localStorage.getItem('token');
         isLoading(true);
-        api.editUser(userData.name, userData.about)
+        api.editUser(userData.name, userData.about, jwt)
         .then((data) => {
             setCurrentUser(data.user);
             closeAllPopups();
@@ -148,8 +150,9 @@ function App() {
     }
     //Обновление аватара пользователя
     function handleUpdateAvatar(userData) {
+        const jwt = localStorage.getItem('token');
         isLoading(true);
-        api.setUserLogo(userData.avatar)
+        api.setUserLogo(userData.avatar, jwt)
         .then((data) => {
             setCurrentUser(data.user);
             closeAllPopups();
@@ -163,8 +166,9 @@ function App() {
     }
     //Лайк
     function handleCardLike(card) {
+        const jwt = localStorage.getItem('token');
         const isLiked = card.likes.some(i => i === currentUser._id);
-        api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+        api.changeLikeCardStatus(card._id, !isLiked, jwt).then((newCard) => {
             setCards((state) => state.map((c) => c._id === card._id ? newCard.card : c));
         })
         .catch((err) => {
@@ -173,8 +177,9 @@ function App() {
     }
     //Добавление новой карточки
     function handleAddPlaceSubmit(card) {
+        const jwt = localStorage.getItem('token');
         isLoading(true);
-        api.addNewCard(card)
+        api.addNewCard(card, jwt)
         .then(newCard => {
             setCards([newCard.card, ...cards]);
             closeAllPopups();

@@ -7,12 +7,12 @@ export default class Api {
     return res.ok? res.json(): Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getLikes(method, cardId) {
+  getLikes(method, cardId, token) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: method,
       headers: { 
         ...this._header,
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        "Authorization": `Bearer ${token}`,
       }
     })
     .then((res) => {
@@ -20,9 +20,9 @@ export default class Api {
     });
   }
 
-  changeLikeCardStatus(cardId, isLiked) {
+  changeLikeCardStatus(cardId, isLiked, token) {
     if(isLiked) {
-      return api.getLikes('PUT', cardId).catch((err) => {
+      return api.getLikes('PUT', cardId, token).catch((err) => {
         console.log(err);
       });
     }
@@ -33,11 +33,11 @@ export default class Api {
     }
   }
 
-  getInitialCards(jwt) {
+  getInitialCards(token) {
     return fetch(this._url + '/cards', {
       headers: { 
         ...this._header,
-        "Authorization": `Bearer ${jwt}`,
+        "Authorization": `Bearer ${token}`,
       }
     })
     .then(res => {
@@ -45,12 +45,12 @@ export default class Api {
     });
   }
 
-  addNewCard(data) {
+  addNewCard(data, token) {
     return fetch(this._url + '/cards ', {
       method: 'POST',
       headers: { 
         ...this._header,
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        "Authorization": `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: data.name,
@@ -62,12 +62,12 @@ export default class Api {
     });
   }
 
-  getUserData(jwt) {
+  getUserData(token) {
     return fetch(this._url +'/users/me', {
       method: 'GET',
       headers: { 
         ...this._header,
-        "Authorization": `Bearer ${jwt}`,
+        "Authorization": `Bearer ${token}`,
       }
     })
     .then(res => {
@@ -75,12 +75,12 @@ export default class Api {
     });
   }
 
-  editUser(name, about) {
+  editUser(name, about, token) {
     return fetch(this._url +'/users/me', {
       method: 'PATCH',
       headers: { 
         ...this._header,
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        "Authorization": `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: name,
@@ -92,12 +92,12 @@ export default class Api {
     });
   }
 
-  setUserLogo(link) {
+  setUserLogo(link, token) {
     return fetch(this._url +'/users/me/avatar', {
       method: 'PATCH',
       headers: { 
         ...this._header,
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        "Authorization": `Bearer ${token}`,
       },
       body: JSON.stringify({
         avatar: link
@@ -108,12 +108,12 @@ export default class Api {
     });  
   }
 
-  deleteCard(id) {
+  deleteCard(id, token) {
      return fetch(this._url + '/cards/' + id, {
       method: 'DELETE',
       headers: { 
         ...this._header,
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        "Authorization": `Bearer ${token}`,
       }
     })
     .then((res) => {
