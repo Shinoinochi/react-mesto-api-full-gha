@@ -15,10 +15,10 @@ const NotFoundError = require('./errors/not-found-err');
 mongoose.connect(BD_URL, {
   useNewUrlParser: true,
 });
+app.use(cors());
 app.use(requestLogger);
 app.use(helmet());
 app.use(express.json());
-app.use(cors({ origin: ['https://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'] }));
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
