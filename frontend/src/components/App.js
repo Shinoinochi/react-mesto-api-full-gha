@@ -29,10 +29,11 @@ function App() {
     const navigate = useNavigate();
     //Получение данных о пользователе и карточках
     React.useEffect(() => {
+        const jwt = localStorage.getItem('token');
         if (login) {
             Promise.all([
-                api.getUserData(),
-                api.getInitialCards()
+                api.getUserData(jwt),
+                api.getInitialCards(jwt)
             ])
             .then(([user, cards]) => {
                 setCurrentUser(user.user);

@@ -33,11 +33,11 @@ export default class Api {
     }
   }
 
-  getInitialCards() {
+  getInitialCards(jwt) {
     return fetch(this._url + '/cards', {
       headers: { 
         ...this._header,
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        "Authorization": `Bearer ${jwt}`,
       }
     })
     .then(res => {
@@ -62,12 +62,12 @@ export default class Api {
     });
   }
 
-  getUserData() {
+  getUserData(jwt) {
     return fetch(this._url +'/users/me', {
       method: 'GET',
       headers: { 
         ...this._header,
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        "Authorization": `Bearer ${jwt}`,
       }
     })
     .then(res => {
@@ -129,9 +129,8 @@ export default class Api {
   registration(password, email) {
     return fetch(this._url + '/signup', {
       method: 'POST',
-      headers: { 
-        ...this._header,
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+      headers: {
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({password, email})
     })
@@ -144,9 +143,8 @@ export default class Api {
   login(password, email) {
     return fetch(this._url + '/signin', {
       method: 'POST',
-      headers: { 
-        ...this._header,
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+      headers: {
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({password, email})
     })
@@ -178,7 +176,7 @@ export default class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://api.shinoinochi.mesto.nomoreparties.co',
+  baseUrl: 'https://localhost:3000',
   headers: {
     "Content-Type": 'application/json'
   }
