@@ -127,7 +127,7 @@ export default class Api {
     });
   }
   registration(password, email) {
-    return fetch('https://api.shinoinochi.mesto.nomoreparties.co/signup', {
+    return fetch('http://api.shinoinochi.mesto.nomoreparties.co/signup', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json" 
@@ -141,7 +141,7 @@ export default class Api {
   }
 
   login(password, email) {
-    return fetch('https://api.shinoinochi.mesto.nomoreparties.co/signin', {
+    return fetch('http://api.shinoinochi.mesto.nomoreparties.co/signin', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -156,7 +156,7 @@ export default class Api {
   }
 
   checkToken(token) {
-    return fetch('https://api.shinoinochi.mesto.nomoreparties.co/users/me', {
+    return fetch('http://api.shinoinochi.mesto.nomoreparties.co/users/me', {
       method: 'GET',
       headers: {
         "Content-Type": 'application/json',
@@ -176,7 +176,7 @@ export default class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://api.shinoinochi.mesto.nomoreparties.co',
+  baseUrl: 'http://api.shinoinochi.mesto.nomoreparties.co',
   headers: {
     "Content-Type": 'application/json'
   }
