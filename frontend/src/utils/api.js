@@ -129,8 +129,9 @@ export default class Api {
   registration(password, email) {
     return fetch(this._url + '/signup', {
       method: 'POST',
-      headers: {
-        "Content-Type": "application/json" 
+      headers: { 
+        ...this._header,
+        "Authorization": `Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify({password, email})
     })
@@ -143,8 +144,9 @@ export default class Api {
   login(password, email) {
     return fetch(this._url + '/signin', {
       method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
+      headers: { 
+        ...this._header,
+        "Authorization": `Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify({password, email})
     })
@@ -156,7 +158,7 @@ export default class Api {
   }
 
   checkToken(token) {
-    return fetch('https://api.shinoinochi.mesto.nomoreparties.co/users/me', {
+    return fetch(this._url + '/users/me', {
       method: 'GET',
       headers: {
         "Content-Type": 'application/json',

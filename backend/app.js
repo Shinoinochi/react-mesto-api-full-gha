@@ -15,7 +15,7 @@ const NotFoundError = require('./errors/not-found-err');
 mongoose.connect(BD_URL, {
   useNewUrlParser: true,
 });
-app.use(cors({ origin: ['http://localhost:3001', 'http://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:3001', 'http://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'] }));
 app.use(requestLogger);
 app.use(helmet());
 app.use(express.json());
