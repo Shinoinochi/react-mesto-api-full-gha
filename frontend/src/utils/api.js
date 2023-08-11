@@ -27,7 +27,7 @@ export default class Api {
       });
     }
     else {
-      return api.getLikes('DELETE', cardId).catch((err) => {
+      return api.getLikes('DELETE', cardId, token).catch((err) => {
         console.log(err);
       });
     }
