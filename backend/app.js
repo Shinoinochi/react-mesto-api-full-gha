@@ -14,13 +14,13 @@ const routes = require('./routes');
 const NotFoundError = require('./errors/not-found-err');
 
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: 60000,
+  max: 150,
+  message: 'Большое колличество запросов',
 });
 mongoose.connect(BD_URL, {
   useNewUrlParser: true,
 });
-app.use(apiLimiter);
 app.use(cors({ origin: ['http://localhost:3001', 'http://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'] }));
 app.use(requestLogger);
 app.use(helmet());
@@ -30,6 +30,7 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+app.use(apiLimiter);
 app.use(routes);
 app.use(errorLogger);
 app.use(errors());
