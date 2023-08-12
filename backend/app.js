@@ -1,3 +1,5 @@
+import rateLimit from 'express-rate-limit';
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -12,10 +14,15 @@ const hadleErrors = require('./middlewares/errors');
 const routes = require('./routes');
 const NotFoundError = require('./errors/not-found-err');
 
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+});
 mongoose.connect(BD_URL, {
   useNewUrlParser: true,
 });
 app.use(cors({ origin: ['http://localhost:3001', 'http://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'] }));
+app.use(apiLimiter);
 app.use(requestLogger);
 app.use(helmet());
 app.use(express.json());
