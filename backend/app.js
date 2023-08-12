@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 
 const { PORT = 3000, BD_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 const app = express();
@@ -15,6 +16,14 @@ const NotFoundError = require('./errors/not-found-err');
 mongoose.connect(BD_URL, {
   useNewUrlParser: true,
 });
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use(apiLimiter);
 app.use(cors({ origin: ['http://localhost:3001', 'http://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'] }));
 app.use(requestLogger);
 app.use(helmet());
