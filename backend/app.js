@@ -1,9 +1,8 @@
-import rateLimit from 'express-rate-limit';
-
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 
 const { PORT = 3000, BD_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
