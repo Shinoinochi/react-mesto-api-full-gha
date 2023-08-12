@@ -20,8 +20,8 @@ const apiLimiter = rateLimit({
 mongoose.connect(BD_URL, {
   useNewUrlParser: true,
 });
-app.use(cors({ origin: ['http://localhost:3001', 'http://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'] }));
 app.use(apiLimiter);
+app.use(cors({ origin: ['http://localhost:3001', 'http://shinoinochi.mesto.nomoreparties.co', 'https://shinoinochi.mesto.nomoreparties.co'] }));
 app.use(requestLogger);
 app.use(helmet());
 app.use(express.json());
